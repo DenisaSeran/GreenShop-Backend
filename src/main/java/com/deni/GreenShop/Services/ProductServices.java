@@ -7,18 +7,29 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServices implements ProductServicesInterface{
     @Autowired
     public ProductsRepository productRepository;
 
+    public List<Product> findByProductName(String searchValue){
+        List<Product> products = new ArrayList<>();
+        if ("".equals(searchValue)) {
+            return productRepository.findAll();
+        }else {
+            System.out.println(productRepository.findByProductName(searchValue));
+            return productRepository.findByProductName(searchValue);
+        }
+    }
     public List<Product> showAllProducts(){
         List<Product> products = new ArrayList<>();
         productRepository.findAll()
                 .forEach(products::add);
         return products;
     }
+
     public Product showProductByID(int productID){
         return productRepository.findById(productID).orElse(null);
     }

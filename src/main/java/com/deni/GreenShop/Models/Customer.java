@@ -1,90 +1,38 @@
 package com.deni.GreenShop.Models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 
 @Entity
 @Table(name = "customer")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int customerID;
+        @GeneratedValue( strategy = GenerationType.IDENTITY)
+        private int customerid;
+
+        @NotBlank(message = "Add the name")
         private String customerName;
+
+        @NotBlank(message = "Add the email")
         private String customerEmail;
+
+        @Length(min=10)
+        @NotBlank(message = "Add the password")
         private String customerPass;
+
         private String customerCountry;
+
         private String customerCity;
 
-    public Customer() {
-    }
 
-    public Customer(int customerID, String customerEmail, String customerPass, String customerCountry, String customerCity, String customerName) {
-        this.customerID = customerID;
-        this.customerEmail = customerEmail;
-        this.customerPass = customerPass;
-        this.customerCountry = customerCountry;
-        this.customerCity = customerCity;
-        this.customerName=customerName;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
-    public String getCustomerPass() {
-        return customerPass;
-    }
-
-    public void setCustomerPass(String customerPass) {
-        this.customerPass = customerPass;
-    }
-
-    public String getCustomerCountry() {
-        return customerCountry;
-    }
-
-    public void setCustomerCountry(String customerCountry) {
-        this.customerCountry = customerCountry;
-    }
-
-    public String getCustomerCity() {
-        return customerCity;
-    }
-
-    public void setCustomerCity(String customerCity) {
-        customerCity = customerCity;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerID=" + customerID +
-                ", customerName='" + customerName + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
-                ", customerPass='" + customerPass + '\'' +
-                ", customerCountry='" + customerCountry + '\'' +
-                ", customerCity='" + customerCity + '\'' +
-                '}';
-    }
 }

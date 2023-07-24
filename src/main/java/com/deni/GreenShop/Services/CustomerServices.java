@@ -16,7 +16,6 @@ public class CustomerServices implements CustomerServicesInterface{
         List<Customer> customers = new ArrayList<>();
         customersRepository.findAll()
                 .forEach(customers::add);
-
         return customers;
     }
 
@@ -32,9 +31,9 @@ public class CustomerServices implements CustomerServicesInterface{
 
     @Override
     public void updateCustomer(Customer newCustomer) {
-        Customer customerToUpdate = customersRepository.findById(newCustomer.getCustomerID()).orElse(null);
+        Customer customerToUpdate = customersRepository.findById(newCustomer.getCustomerid()).orElse(null);
         customerToUpdate.setCustomerName(newCustomer.getCustomerName());
-        customerToUpdate.setCustomerID(newCustomer.getCustomerID());
+        customerToUpdate.setCustomerid(newCustomer.getCustomerid());
         customerToUpdate.setCustomerEmail(newCustomer.getCustomerEmail());
         customerToUpdate.setCustomerPass(newCustomer.getCustomerPass());
         customerToUpdate.setCustomerCountry(newCustomer.getCustomerCountry());

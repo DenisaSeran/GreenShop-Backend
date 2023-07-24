@@ -5,7 +5,6 @@ import com.deni.GreenShop.Models.Customer;
 import java.util.List;
 
 public interface CustomerServicesInterface{
-
     List<Customer> showAllCustomers();
     Customer showCustomerByID(int customerID);
     Customer addCustomer(Customer customer);
