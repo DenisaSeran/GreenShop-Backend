@@ -2,6 +2,8 @@ package com.deni.GreenShop.Models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -18,21 +20,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productID;
 
-    @NotBlank(message = "Add the storeID")
+    @NotNull(message = "Add the storeID")
     private int storeID;
 
     @NotBlank(message = "Add the product name")
     private String productName;
 
-    @NotBlank(message = "Add the sale date")
     private Date saleDate;
 
-    @NotBlank(message = "Add the expiry date")
     private Date expDate;
 
+    @NotNull(message = "Add the regular price")
     private float regularPrice;
 
-    @NotBlank(message = "Add the price")
+    @NotNull(message = "Add the reduced price")
     private float reducedPrice;
 
     private int productStock;

@@ -1,5 +1,7 @@
 package com.deni.GreenShop.Controllers;
 
+import com.deni.GreenShop.Errors.CustomerNotFoundException;
+import com.deni.GreenShop.Errors.DeleteCustomerNotFoundException;
 import com.deni.GreenShop.Models.Customer;
 import com.deni.GreenShop.Services.CustomerServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ public class CustomerController {
         return customerService.showAllCustomers();
     }
 
-    @GetMapping("/customer/{id}")
-    public Customer showCustomerByID(@PathVariable int customerID){
+    @GetMapping("/customer/{customerID}")
+    public Customer showCustomerByID(@PathVariable int customerID) throws CustomerNotFoundException {
         return customerService.showCustomerByID(customerID);
     }
 
@@ -30,11 +32,14 @@ public class CustomerController {
 
 
     @PutMapping("/updateCustomer")
-    public void updateCustomer(@RequestBody Customer customer){
+    public void updateCustomer( @RequestBody Customer customer){
         customerService.updateCustomer(customer);
     }
-    @DeleteMapping("/deleteCustomer/{id}")
-    public void deleteCustomer(@PathVariable int customerID){
+
+    @DeleteMapping("/deleteCustomer/{customerID}")
+
+    public void deleteCustomer(@PathVariable int customerID) throws DeleteCustomerNotFoundException {
+
         customerService.deleteCustomer(customerID);
     }
 }

@@ -1,5 +1,7 @@
 package com.deni.GreenShop.Controllers;
 
+import com.deni.GreenShop.Errors.DeleteStoreNotFoundException;
+import com.deni.GreenShop.Errors.StoreNotFoundException;
 import com.deni.GreenShop.Models.Store;
 import com.deni.GreenShop.Services.StoreServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ public class StoreController {
 
     @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4200/stores"})
     @GetMapping("/store/{storeID}")
-    public Store showStoreByID(@PathVariable int storeID){
+    public Store showStoreByID (@PathVariable int storeID) throws StoreNotFoundException {
         return storeService.showStoreByID(storeID);
     }
 
@@ -29,12 +31,12 @@ public class StoreController {
     }
 
     @PutMapping("/updateStore")
-    public void updateStore(@RequestBody Store store){
+    public void updateStore( @RequestBody Store store) {
         storeService.updateStore(store);
     }
 
-    @DeleteMapping("/deleteStore/{id}")
-    public void deleteStore(@PathVariable int storeID){
+    @DeleteMapping("/deleteStore/{storeID}")
+    public void deleteStore(@PathVariable int storeID) throws DeleteStoreNotFoundException {
         storeService.deleteStore(storeID);
     }
 
